@@ -142,3 +142,14 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+import dj_database_url
+DATABASES = {
+    'default': dj_database_url.config(
+        default="postgres://uhkqqcdaniqkwu:67da70d5d4c422c6afeb2944dc47dbfdfa1570b83d80dbb35a6b2f8142a29e29@ec2-54-83-13-119.compute-1.amazonaws.com:5432/da4rnl85gis7cm"
+    )
+}
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
