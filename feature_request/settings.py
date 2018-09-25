@@ -135,13 +135,17 @@ REST_FRAMEWORK = {
 
 
 # Heroku Setting
+DEBUG = False
+DEBUG_PROPAGATE_EXCEPTIONS = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
