@@ -135,8 +135,8 @@ REST_FRAMEWORK = {
 
 
 # Heroku Setting
-DEBUG = False
-DEBUG_PROPAGATE_EXCEPTIONS = True
+#DEBUG = False
+#DEBUG_PROPAGATE_EXCEPTIONS = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
