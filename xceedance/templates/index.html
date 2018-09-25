@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block content %}
+<div ng-controller="featureController">
+    <div class="bg-info clearfix text-center">
+    <a href="" class="btn btn-default btn-rounded mb-4 waves-effect waves-light" data-toggle="modal" data-target="#modalFeatureForm">
+     <span class="glyphicon glyphicon-plus"></span> Add Feature
+    </a>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+      <table class="table table-striped">
+          <thead>
+          <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Client</th>
+              <th>Client Priority</th>
+              <th>Target Date</th>
+              <th>Product Area</th>
+          </tr>
+          </thead>
+            <tr ng-repeat="ft in features">
+              <td>[{ ft.title }]</td>
+              <td>[{ ft.description }]</td>
+              <td>[{ ft.client }]</td>
+              <td>[{ ft.client_priority }]</td>
+              <td>[{ ft.target_date }]</td>
+              <td>[{ ft.product_area }]</td>
+            </tr>
+      </table>
+    </div>
+
+
+
+<div class="modal fade" id="modalFeatureForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Feature</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form ng-submit="submitFeature()">
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fa fa-text-height prefix grey-text"></i>
+                    <input type="text" id="form34" ng-model="selectedFeature.title" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="form34">Title</label>
+                </div>
+                <div class="md-form mb-5 row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-user-circle-o prefix grey-text"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        <select class="form-control"
+                                ng-model="selectedFeature.client" ng-options="x for x in clients"
+                        >
+                        </select>
+                    </div>
+                </div>
+                <div class="md-form mb-5 row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-sort-numeric-asc prefix grey-text"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        <select class="form-control" ng-model="selectedFeature.client_priority" >
+                            <option>Priority</option>
+                            <option ng-repeat="i in maxPriority | range">[{i}]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="md-form mb-5">
+                    <i class="fa fa-calendar prefix grey-text"></i>
+                    <input type="text" id="traget_date" ng-model="selectedFeature.target_date" class="form-control validate">
+
+                </div>
+                <div class="md-form mb-5 row">
+                    <div class="col-sm-1">
+                        <i class="fa fa-tag prefix grey-text"></i>
+                    </div>
+                    <div class="col-sm-11">
+                        <select class="form-control"
+                                ng-model="selectedFeature.product_area" ng-options="x for x in products"
+                        >
+                        </select>
+                    </div>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-pencil prefix grey-text"></i>
+                    <textarea type="text" class="md-textarea form-control"
+                              ng-model="selectedFeature.description"
+                              rows="4"></textarea>
+                    <label data-error="wrong" data-success="right" for="form8">Description</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-unique">Save <i class="fa fa-floppy-o ml-1"></i></button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock content %}
