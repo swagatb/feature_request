@@ -41,7 +41,9 @@ class Feature(models.Model):
     
     def save(self, is_update_priority=False, *args, **kwargs):
         def update_priority():
-            features = self.__class__.objects.filter(reporter=self.reporter, client=self.client)
+            features = self.__class__.objects.filter(reporter=self.reporter,
+                                                     client=self.client,
+                                                     client_priority__gte=self.client_priority)
             for ft in features:
                 ft.client_priority +=1
                 ft.save()
